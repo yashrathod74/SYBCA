@@ -1,0 +1,240 @@
+select * from employee_yash where post !='president' ;
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     12345 BansiPadia      Clerk            18-NOV-90      15000                
+        10                                                                      
+                                                                                
+     13254 radha sharma    salesman   12345 18-NOV-90      12000       4000     
+        20                                                                      
+                                                                                
+     12675 TanmayDomadiya  President        05-JUL-85     124000                
+        10                                                                      
+                                                                                
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     13457 suraj prakash   salesman   12345 12-AUG-92      14650       1700     
+        30                                                                      
+                                                                                
+     14567 Seema Lava      programmer 13654 17-JUL-94      35000                
+        10                                                                      
+                                                                                
+     16754 krupa vala      programmer 13654 13-AUG-92      30000                
+        10                                                                      
+                                                                                
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     14562 kalpana joshi   clerk            17-SEP-90      17000                
+        40                                                                      
+                                                                                
+     12435  KevalRaval     salesman   12345 20-OCT-90      18000       6500     
+        20                                                                      
+                                                                                
+     13654  parth vasoya   analyst    12675 27-DEC-95      90000                
+        10                                                                      
+                                                                                
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     18654  ramesh vasoya  analyst    12675 15-MAY-93      85000                
+        10                                                                      
+                                                                                
+
+10 rows selected.
+
+SQL> select * from employee_yash where post !='President' ;
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     12345 BansiPadia      Clerk            18-NOV-90      15000                
+        10                                                                      
+                                                                                
+     13254 radha sharma    salesman   12345 18-NOV-90      12000       4000     
+        20                                                                      
+                                                                                
+     13457 suraj prakash   salesman   12345 12-AUG-92      14650       1700     
+        30                                                                      
+                                                                                
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     14567 Seema Lava      programmer 13654 17-JUL-94      35000                
+        10                                                                      
+                                                                                
+     16754 krupa vala      programmer 13654 13-AUG-92      30000                
+        10                                                                      
+                                                                                
+     14562 kalpana joshi   clerk            17-SEP-90      17000                
+        40                                                                      
+                                                                                
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     12435  KevalRaval     salesman   12345 20-OCT-90      18000       6500     
+        20                                                                      
+                                                                                
+     13654  parth vasoya   analyst    12675 27-DEC-95      90000                
+        10                                                                      
+                                                                                
+     18654  ramesh vasoya  analyst    12675 15-MAY-93      85000                
+        10                                                                      
+                                                                                
+
+9 rows selected.
+
+SQL> SELECT DISTINCT salary
+  2  FROM employee;
+FROM employee
+     *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT DISTINCT salary FROM employee_yash;
+
+    SALARY                                                                      
+----------                                                                      
+     12000                                                                      
+     90000                                                                      
+     14650                                                                      
+     15000                                                                      
+    124000                                                                      
+     30000                                                                      
+     18000                                                                      
+     85000                                                                      
+     35000                                                                      
+     17000                                                                      
+
+10 rows selected.
+
+SQL> SELECT * FROM employee_yash WHERE hire_date BETWEEN '1990-01-01' AND '1999-12-31';
+SELECT * FROM employee_yash WHERE hire_date BETWEEN '1990-01-01' AND '1999-12-31'
+                                  *
+ERROR at line 1:
+ORA-00904: "HIRE_DATE": invalid identifier 
+
+
+SQL> select * from employee_yash;
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     12345 BansiPadia      Clerk            18-NOV-90      15000                
+        10                                                                      
+                                                                                
+     13254 radha sharma    salesman   12345 18-NOV-90      12000       4000     
+        20                                                                      
+                                                                                
+     12675 TanmayDomadiya  President        05-JUL-85     124000                
+        10                                                                      
+                                                                                
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     13457 suraj prakash   salesman   12345 12-AUG-92      14650       1700     
+        30                                                                      
+                                                                                
+     14567 Seema Lava      programmer 13654 17-JUL-94      35000                
+        10                                                                      
+                                                                                
+     16754 krupa vala      programmer 13654 13-AUG-92      30000                
+        10                                                                      
+                                                                                
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     14562 kalpana joshi   clerk            17-SEP-90      17000                
+        40                                                                      
+                                                                                
+     12435  KevalRaval     salesman   12345 20-OCT-90      18000       6500     
+        20                                                                      
+                                                                                
+     13654  parth vasoya   analyst    12675 27-DEC-95      90000                
+        10                                                                      
+                                                                                
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     18654  ramesh vasoya  analyst    12675 15-MAY-93      85000                
+        10                                                                      
+                                                                                
+
+10 rows selected.
+
+SQL> SELECT * FROM employee_yash WHERE hiredate BETWEEN '1990-01-01' AND '1999-12-31';
+SELECT * FROM employee_yash WHERE hiredate BETWEEN '1990-01-01' AND '1999-12-31'
+                                                   *
+ERROR at line 1:
+ORA-01861: literal does not match format string 
+
+
+SQL> SELECT * FROM employee_yash WHERE hiredate BETWEEN date'1990-01-01' AND date'1999-12-31';
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     12345 BansiPadia      Clerk            18-NOV-90      15000                
+        10                                                                      
+                                                                                
+     13254 radha sharma    salesman   12345 18-NOV-90      12000       4000     
+        20                                                                      
+                                                                                
+     13457 suraj prakash   salesman   12345 12-AUG-92      14650       1700     
+        30                                                                      
+                                                                                
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     14567 Seema Lava      programmer 13654 17-JUL-94      35000                
+        10                                                                      
+                                                                                
+     16754 krupa vala      programmer 13654 13-AUG-92      30000                
+        10                                                                      
+                                                                                
+     14562 kalpana joshi   clerk            17-SEP-90      17000                
+        40                                                                      
+                                                                                
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     12435  KevalRaval     salesman   12345 20-OCT-90      18000       6500     
+        20                                                                      
+                                                                                
+     13654  parth vasoya   analyst    12675 27-DEC-95      90000                
+        10                                                                      
+                                                                                
+     18654  ramesh vasoya  analyst    12675 15-MAY-93      85000                
+        10                                                                      
+                                                                                
+
+9 rows selected.
+
+SQL> 

@@ -1,0 +1,64 @@
+create table dept_yash (dept_id number(2)primary key, dept_name varchar(15),location varchar(10));
+
+Table created.
+
+SQL> insert into dept_yash values (10,'IT','anand');
+
+1 row created.
+
+SQL> insert into dept_yash values (20,'sales','bombay');
+
+1 row created.
+
+SQL> insert into dept_yash values (30,'purchase','surat');
+
+1 row created.
+
+SQL> insert into dept_yash values (40,'finanace','anand');
+
+1 row created.
+
+SQL> insert into dept_yash values (50,'marketing','surat');
+
+1 row created.
+
+SQL> select * from dept_yash;
+
+   DEPT_ID DEPT_NAME       LOCATION                                             
+---------- --------------- ----------                                           
+        10 IT              anand                                                
+        20 sales           bombay                                               
+        30 purchase        surat                                                
+        40 finanace        anand                                                
+        50 marketing       surat                                                
+
+SQL> select * from dept_yash where location='anand'
+  2   select * from dept_yash where location='anand';
+ select * from dept_yash where location='anand'
+ *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select * from dept_yash where location='anand';
+
+   DEPT_ID DEPT_NAME       LOCATION                                             
+---------- --------------- ----------                                           
+        10 IT              anand                                                
+        40 finanace        anand                                                
+
+SQL> select * from dept_yash where dept_id=10 or dept_id=20 or dept_id=40;
+
+   DEPT_ID DEPT_NAME       LOCATION                                             
+---------- --------------- ----------                                           
+        10 IT              anand                                                
+        20 sales           bombay                                               
+        40 finanace        anand                                                
+
+SQL> select * from dept_yash where dept_id=50;
+
+   DEPT_ID DEPT_NAME       LOCATION                                             
+---------- --------------- ----------                                           
+        50 marketing       surat                                                
+
+SQL> 

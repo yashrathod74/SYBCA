@@ -1,0 +1,65 @@
+select * from employee_yash;
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     12345 BansiPadia      Clerk            18-NOV-90      15000                
+        10                                                                      
+                                                                                
+     13254 radha sharma    salesman   12345 18-NOV-90      12000       4000     
+        20                                                                      
+                                                                                
+     12675 TanmayDomadiya  President        05-JUL-85     124000                
+        10                                                                      
+                                                                                
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     13457 suraj prakash   salesman   12345 12-AUG-92      14650       1700     
+        30                                                                      
+                                                                                
+     14567 Seema Lava      programmer 13654 17-JUL-94      35000                
+        10                                                                      
+                                                                                
+     16754 krupa vala      programmer 13654 13-AUG-92      30000                
+        10                                                                      
+                                                                                
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     14562 kalpana joshi   clerk            17-SEP-90      17000                
+        40                                                                      
+                                                                                
+     12435  KevalRaval     salesman   12345 20-OCT-90      18000       6500     
+        20                                                                      
+                                                                                
+     13654  parth vasoya   analyst    12675 27-DEC-95      90000                
+        10                                                                      
+                                                                                
+
+    EMP_ID EMP_NAME        POST       MGR_I HIREDATE      SALARY       COMM     
+---------- --------------- ---------- ----- --------- ---------- ----------     
+   DEPT_ID                                                                      
+----------                                                                      
+     18654  ramesh vasoya  analyst    12675 15-MAY-93      85000                
+        10                                                                      
+                                                                                
+
+10 rows selected.
+
+SQL> clear screen
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC                                                   
+---------- -------------- -------------                                         
+        10 ACCOUNTING     NEW YORK                                              
+        20 RESEARCH       DALLAS                                                
+        30 SALES          CHICAGO                                               
+        40 OPERATIONS     BOSTON                                                
+
+SQL> 
