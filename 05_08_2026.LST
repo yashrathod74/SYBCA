@@ -1,0 +1,548 @@
+select count (job) as total_job,avg(sal) from emp group by job;
+
+ TOTAL_JOB   AVG(SAL)                                                           
+---------- ----------                                                           
+         4     1037.5                                                           
+         4       1400                                                           
+         1       5000                                                           
+         3 2758.33333                                                           
+         2       3000                                                           
+
+SQL> select deptno as total_dept,count(*) as total_emp from emp group by deptno having count(*)>3;
+
+TOTAL_DEPT  TOTAL_EMP                                                           
+---------- ----------                                                           
+        30          6                                                           
+        20          5                                                           
+
+SQL> select deptno , min (sal) from emp group by deptno having min(sal)>=1000;
+
+    DEPTNO   MIN(SAL)                                                           
+---------- ----------                                                           
+        10       1300                                                           
+
+
+SQL> select deptno , min (sal) from emp group by deptno having min(sal)>=750;
+
+    DEPTNO   MIN(SAL)                                                           
+---------- ----------                                                           
+        30        950                                                           
+        20        800                                                           
+        10       1300                                                           
+
+
+SQL> select deptno , sal from emp group by cube (deptno,sal) ;
+
+    DEPTNO        SAL                                                           
+---------- ----------                                                           
+                                                                                
+                  800                                                           
+                 1100                                                           
+                 1300                                                           
+                 1500                                                           
+                 1600                                                           
+                 3000                                                           
+                 5000                                                           
+                  950                                                           
+                 1250                                                           
+                 2450                                                           
+
+    DEPTNO        SAL                                                           
+---------- ----------                                                           
+                 2850                                                           
+                 2975                                                           
+        10                                                                      
+        10       1300                                                           
+        10       5000                                                           
+        10       2450                                                           
+        20                                                                      
+        20        800                                                           
+        20       1100                                                           
+        20       3000                                                           
+        20       2975                                                           
+
+    DEPTNO        SAL                                                           
+---------- ----------                                                           
+        30                                                                      
+        30       1500                                                           
+        30       1600                                                           
+        30        950                                                           
+        30       1250                                                           
+        30       2850                                                           
+
+28 rows selected.
+
+SQL> desc emp;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGR                                                NUMBER(4)
+ HIREDATE                                           DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             NUMBER(2)
+
+SQL> select ename , sal from emp group by cube (ename,sal) ;
+
+ENAME             SAL                                                           
+---------- ----------                                                           
+                                                                                
+                  800                                                           
+                 1100                                                           
+                 1300                                                           
+                 1500                                                           
+                 1600                                                           
+                 3000                                                           
+                 5000                                                           
+                  950                                                           
+                 1250                                                           
+                 2450                                                           
+
+ENAME             SAL                                                           
+---------- ----------                                                           
+                 2850                                                           
+                 2975                                                           
+FORD                                                                            
+FORD             3000                                                           
+KING                                                                            
+KING             5000                                                           
+WARD                                                                            
+WARD             1250                                                           
+ADAMS                                                                           
+ADAMS            1100                                                           
+ALLEN                                                                           
+
+ENAME             SAL                                                           
+---------- ----------                                                           
+ALLEN            1600                                                           
+BLAKE                                                                           
+BLAKE            2850                                                           
+CLARK                                                                           
+CLARK            2450                                                           
+JAMES                                                                           
+JAMES             950                                                           
+JONES                                                                           
+JONES            2975                                                           
+SCOTT                                                                           
+SCOTT            3000                                                           
+
+ENAME             SAL                                                           
+---------- ----------                                                           
+SMITH                                                                           
+SMITH             800                                                           
+MARTIN                                                                          
+MARTIN           1250                                                           
+MILLER                                                                          
+MILLER           1300                                                           
+TURNER                                                                          
+TURNER           1500                                                           
+
+41 rows selected.
+
+SQL> select job , sal from emp group by cube (job,sal) ;
+
+JOB              SAL                                                            
+--------- ----------                                                            
+                                                                                
+                 800                                                            
+                1100                                                            
+                1300                                                            
+                1500                                                            
+                1600                                                            
+                3000                                                            
+                5000                                                            
+                 950                                                            
+                1250                                                            
+                2450                                                            
+
+JOB              SAL                                                            
+--------- ----------                                                            
+                2850                                                            
+                2975                                                            
+CLERK                                                                           
+CLERK            800                                                            
+CLERK           1100                                                            
+CLERK           1300                                                            
+CLERK            950                                                            
+ANALYST                                                                         
+ANALYST         3000                                                            
+MANAGER                                                                         
+MANAGER         2450                                                            
+
+JOB              SAL                                                            
+--------- ----------                                                            
+MANAGER         2850                                                            
+MANAGER         2975                                                            
+SALESMAN                                                                        
+SALESMAN        1500                                                            
+SALESMAN        1600                                                            
+SALESMAN        1250                                                            
+PRESIDENT                                                                       
+PRESIDENT       5000                                                            
+
+30 rows selected.
+
+SQL> select job , sal from emp group by rollup (job,sal) ;
+
+JOB              SAL                                                            
+--------- ----------                                                            
+CLERK            800                                                            
+CLERK           1100                                                            
+CLERK           1300                                                            
+CLERK            950                                                            
+CLERK                                                                           
+ANALYST         3000                                                            
+ANALYST                                                                         
+MANAGER         2450                                                            
+MANAGER         2850                                                            
+MANAGER         2975                                                            
+MANAGER                                                                         
+
+JOB              SAL                                                            
+--------- ----------                                                            
+SALESMAN        1500                                                            
+SALESMAN        1600                                                            
+SALESMAN        1250                                                            
+SALESMAN                                                                        
+PRESIDENT       5000                                                            
+PRESIDENT                                                                       
+                                                                                
+
+18 rows selected.
+
+SQL> ==========================joins=============================================
+
+SQL> select e.empno,e.ename,d.dname,d.loc from emp e join dept d on e.deptno=d.deptno;
+
+     EMPNO ENAME      DNAME          LOC                                        
+---------- ---------- -------------- -------------                              
+      7782 CLARK      ACCOUNTING     NEW YORK                                   
+      7839 KING       ACCOUNTING     NEW YORK                                   
+      7934 MILLER     ACCOUNTING     NEW YORK                                   
+      7566 JONES      RESEARCH       DALLAS                                     
+      7902 FORD       RESEARCH       DALLAS                                     
+      7876 ADAMS      RESEARCH       DALLAS                                     
+      7369 SMITH      RESEARCH       DALLAS                                     
+      7788 SCOTT      RESEARCH       DALLAS                                     
+      7521 WARD       SALES          CHICAGO                                    
+      7844 TURNER     SALES          CHICAGO                                    
+      7499 ALLEN      SALES          CHICAGO                                    
+
+     EMPNO ENAME      DNAME          LOC                                        
+---------- ---------- -------------- -------------                              
+      7900 JAMES      SALES          CHICAGO                                    
+      7698 BLAKE      SALES          CHICAGO                                    
+      7654 MARTIN     SALES          CHICAGO                                    
+
+14 rows selected.
+
+SQL> select e.ename,e.sal,s.grade
+  2  from emp e join salgrade s
+  3  on e.sal between s.losal and s.hisal;
+
+ENAME             SAL      GRADE                                                
+---------- ---------- ----------                                                
+SMITH             800          1                                                
+JAMES             950          1                                                
+ADAMS            1100          1                                                
+WARD             1250          2                                                
+MARTIN           1250          2                                                
+MILLER           1300          2                                                
+TURNER           1500          3                                                
+ALLEN            1600          3                                                
+CLARK            2450          4                                                
+BLAKE            2850          4                                                
+JONES            2975          4                                                
+
+ENAME             SAL      GRADE                                                
+---------- ---------- ----------                                                
+SCOTT            3000          4                                                
+FORD             3000          4                                                
+KING             5000          5                                                
+
+14 rows selected.
+
+SQL> select e.empno,e.ename,d.deptno,d.dname
+  2  from emp e inner join dept d
+  3  on e.deptno=d.deptno;
+
+     EMPNO ENAME          DEPTNO DNAME                                          
+---------- ---------- ---------- --------------                                 
+      7782 CLARK              10 ACCOUNTING                                     
+      7839 KING               10 ACCOUNTING                                     
+      7934 MILLER             10 ACCOUNTING                                     
+      7566 JONES              20 RESEARCH                                       
+      7902 FORD               20 RESEARCH                                       
+      7876 ADAMS              20 RESEARCH                                       
+      7369 SMITH              20 RESEARCH                                       
+      7788 SCOTT              20 RESEARCH                                       
+      7521 WARD               30 SALES                                          
+      7844 TURNER             30 SALES                                          
+      7499 ALLEN              30 SALES                                          
+
+     EMPNO ENAME          DEPTNO DNAME                                          
+---------- ---------- ---------- --------------                                 
+      7900 JAMES              30 SALES                                          
+      7698 BLAKE              30 SALES                                          
+      7654 MARTIN             30 SALES                                          
+
+14 rows selected.
+
+SQL> select e.empno,e.ename,d.deptno,d.dname
+  2  from emp e left outer join dept d
+  3  on e.deptno=d.deptno;
+
+     EMPNO ENAME          DEPTNO DNAME                                          
+---------- ---------- ---------- --------------                                 
+      7934 MILLER             10 ACCOUNTING                                     
+      7839 KING               10 ACCOUNTING                                     
+      7782 CLARK              10 ACCOUNTING                                     
+      7902 FORD               20 RESEARCH                                       
+      7876 ADAMS              20 RESEARCH                                       
+      7788 SCOTT              20 RESEARCH                                       
+      7566 JONES              20 RESEARCH                                       
+      7369 SMITH              20 RESEARCH                                       
+      7900 JAMES              30 SALES                                          
+      7844 TURNER             30 SALES                                          
+      7698 BLAKE              30 SALES                                          
+
+     EMPNO ENAME          DEPTNO DNAME                                          
+---------- ---------- ---------- --------------                                 
+      7654 MARTIN             30 SALES                                          
+      7521 WARD               30 SALES                                          
+      7499 ALLEN              30 SALES                                          
+
+14 rows selected.
+
+SQL> select e.empno,e.ename,d.deptno,d.dname
+  2  from emp e right outer join dept d
+  3  on e.deptno=d.deptno;
+
+     EMPNO ENAME          DEPTNO DNAME                                          
+---------- ---------- ---------- --------------                                 
+      7782 CLARK              10 ACCOUNTING                                     
+      7839 KING               10 ACCOUNTING                                     
+      7934 MILLER             10 ACCOUNTING                                     
+      7566 JONES              20 RESEARCH                                       
+      7902 FORD               20 RESEARCH                                       
+      7876 ADAMS              20 RESEARCH                                       
+      7369 SMITH              20 RESEARCH                                       
+      7788 SCOTT              20 RESEARCH                                       
+      7521 WARD               30 SALES                                          
+      7844 TURNER             30 SALES                                          
+      7499 ALLEN              30 SALES                                          
+
+     EMPNO ENAME          DEPTNO DNAME                                          
+---------- ---------- ---------- --------------                                 
+      7900 JAMES              30 SALES                                          
+      7698 BLAKE              30 SALES                                          
+      7654 MARTIN             30 SALES                                          
+                              40 OPERATIONS                                     
+
+15 rows selected.
+
+SQL> select e.empno,e.ename,d.deptno,d.dname
+  2  from emp e full outer join dept d
+  3  on e.deptno=d.deptno;
+
+     EMPNO ENAME          DEPTNO DNAME                                          
+---------- ---------- ---------- --------------                                 
+      7934 MILLER             10 ACCOUNTING                                     
+      7839 KING               10 ACCOUNTING                                     
+      7782 CLARK              10 ACCOUNTING                                     
+      7902 FORD               20 RESEARCH                                       
+      7876 ADAMS              20 RESEARCH                                       
+      7788 SCOTT              20 RESEARCH                                       
+      7566 JONES              20 RESEARCH                                       
+      7369 SMITH              20 RESEARCH                                       
+      7900 JAMES              30 SALES                                          
+      7844 TURNER             30 SALES                                          
+      7698 BLAKE              30 SALES                                          
+
+     EMPNO ENAME          DEPTNO DNAME                                          
+---------- ---------- ---------- --------------                                 
+      7654 MARTIN             30 SALES                                          
+      7521 WARD               30 SALES                                          
+      7499 ALLEN              30 SALES                                          
+                              40 OPERATIONS                                     
+
+15 rows selected.
+
+SQL> select distinct e.deptno as department ,e.ename as employee ,m.ename as manger
+  2  from emp e left join emp m
+  3  on e.mgr=m.empno order by e.deptno ;
+
+DEPARTMENT EMPLOYEE   MANGER                                                    
+---------- ---------- ----------                                                
+        10 CLARK      KING                                                      
+        10 KING                                                                 
+        10 MILLER     CLARK                                                     
+        20 ADAMS      SCOTT                                                     
+        20 FORD       JONES                                                     
+        20 JONES      KING                                                      
+        20 SCOTT      JONES                                                     
+        20 SMITH      FORD                                                      
+        30 ALLEN      BLAKE                                                     
+        30 BLAKE      KING                                                      
+        30 JAMES      BLAKE                                                     
+
+DEPARTMENT EMPLOYEE   MANGER                                                    
+---------- ---------- ----------                                                
+        30 MARTIN     BLAKE                                                     
+        30 TURNER     BLAKE                                                     
+        30 WARD       BLAKE                                                     
+
+14 rows selected.
+
+SQL> select e.ename,d.dname from emp e cross join dept d;
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+SMITH      ACCOUNTING                                                           
+ALLEN      ACCOUNTING                                                           
+WARD       ACCOUNTING                                                           
+JONES      ACCOUNTING                                                           
+MARTIN     ACCOUNTING                                                           
+BLAKE      ACCOUNTING                                                           
+CLARK      ACCOUNTING                                                           
+SCOTT      ACCOUNTING                                                           
+KING       ACCOUNTING                                                           
+TURNER     ACCOUNTING                                                           
+ADAMS      ACCOUNTING                                                           
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+JAMES      ACCOUNTING                                                           
+FORD       ACCOUNTING                                                           
+MILLER     ACCOUNTING                                                           
+SMITH      RESEARCH                                                             
+ALLEN      RESEARCH                                                             
+WARD       RESEARCH                                                             
+JONES      RESEARCH                                                             
+MARTIN     RESEARCH                                                             
+BLAKE      RESEARCH                                                             
+CLARK      RESEARCH                                                             
+SCOTT      RESEARCH                                                             
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+KING       RESEARCH                                                             
+TURNER     RESEARCH                                                             
+ADAMS      RESEARCH                                                             
+JAMES      RESEARCH                                                             
+FORD       RESEARCH                                                             
+MILLER     RESEARCH                                                             
+SMITH      SALES                                                                
+ALLEN      SALES                                                                
+WARD       SALES                                                                
+JONES      SALES                                                                
+MARTIN     SALES                                                                
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+BLAKE      SALES                                                                
+CLARK      SALES                                                                
+SCOTT      SALES                                                                
+KING       SALES                                                                
+TURNER     SALES                                                                
+ADAMS      SALES                                                                
+JAMES      SALES                                                                
+FORD       SALES                                                                
+MILLER     SALES                                                                
+SMITH      OPERATIONS                                                           
+ALLEN      OPERATIONS                                                           
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+WARD       OPERATIONS                                                           
+JONES      OPERATIONS                                                           
+MARTIN     OPERATIONS                                                           
+BLAKE      OPERATIONS                                                           
+CLARK      OPERATIONS                                                           
+SCOTT      OPERATIONS                                                           
+KING       OPERATIONS                                                           
+TURNER     OPERATIONS                                                           
+ADAMS      OPERATIONS                                                           
+JAMES      OPERATIONS                                                           
+FORD       OPERATIONS                                                           
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+MILLER     OPERATIONS                                                           
+
+56 rows selected.
+
+SQL> select * from emp natural join dept ;
+
+    DEPTNO      EMPNO ENAME      JOB              MGR HIREDATE         SAL      
+---------- ---------- ---------- --------- ---------- --------- ----------      
+      COMM DNAME          LOC                                                   
+---------- -------------- -------------                                         
+        10       7782 CLARK      MANAGER         7839 09-JUN-81       2450      
+           ACCOUNTING     NEW YORK                                              
+                                                                                
+        10       7839 KING       PRESIDENT            17-NOV-81       5000      
+           ACCOUNTING     NEW YORK                                              
+                                                                                
+        10       7934 MILLER     CLERK           7782 23-JAN-82       1300      
+           ACCOUNTING     NEW YORK                                              
+                                                                                
+
+    DEPTNO      EMPNO ENAME      JOB              MGR HIREDATE         SAL      
+---------- ---------- ---------- --------- ---------- --------- ----------      
+      COMM DNAME          LOC                                                   
+---------- -------------- -------------                                         
+        20       7566 JONES      MANAGER         7839 02-APR-81       2975      
+           RESEARCH       DALLAS                                                
+                                                                                
+        20       7902 FORD       ANALYST         7566 03-DEC-81       3000      
+           RESEARCH       DALLAS                                                
+                                                                                
+        20       7876 ADAMS      CLERK           7788 23-MAY-87       1100      
+           RESEARCH       DALLAS                                                
+                                                                                
+
+    DEPTNO      EMPNO ENAME      JOB              MGR HIREDATE         SAL      
+---------- ---------- ---------- --------- ---------- --------- ----------      
+      COMM DNAME          LOC                                                   
+---------- -------------- -------------                                         
+        20       7369 SMITH      CLERK           7902 17-DEC-80        800      
+           RESEARCH       DALLAS                                                
+                                                                                
+        20       7788 SCOTT      ANALYST         7566 19-APR-87       3000      
+           RESEARCH       DALLAS                                                
+                                                                                
+        30       7521 WARD       SALESMAN        7698 22-FEB-81       1250      
+       500 SALES          CHICAGO                                               
+                                                                                
+
+    DEPTNO      EMPNO ENAME      JOB              MGR HIREDATE         SAL      
+---------- ---------- ---------- --------- ---------- --------- ----------      
+      COMM DNAME          LOC                                                   
+---------- -------------- -------------                                         
+        30       7844 TURNER     SALESMAN        7698 08-SEP-81       1500      
+         0 SALES          CHICAGO                                               
+                                                                                
+        30       7499 ALLEN      SALESMAN        7698 20-FEB-81       1600      
+       300 SALES          CHICAGO                                               
+                                                                                
+        30       7900 JAMES      CLERK           7698 03-DEC-81        950      
+           SALES          CHICAGO                                               
+                                                                                
+
+    DEPTNO      EMPNO ENAME      JOB              MGR HIREDATE         SAL      
+---------- ---------- ---------- --------- ---------- --------- ----------      
+      COMM DNAME          LOC                                                   
+---------- -------------- -------------                                         
+        30       7698 BLAKE      MANAGER         7839 01-MAY-81       2850      
+           SALES          CHICAGO                                               
+                                                                                
+        30       7654 MARTIN     SALESMAN        7698 28-SEP-81       1250      
+      1400 SALES          CHICAGO                                               
+                                                                                
+
+14 rows selected.
+
+SQL> 
