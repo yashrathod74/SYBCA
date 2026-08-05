@@ -1,0 +1,54 @@
+select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+DEPARTMENT2                    TABLE                                            
+STUDENT                        TABLE                                            
+STUD                           TABLE                                            
+EMPLOYEBHARGAV                 TABLE                                            
+DEPARTMENTBHARGAV              TABLE                                            
+BIN$HWhpe31sSsSVOiezFGdOYg==$0 TABLE                                            
+EMPLOYEE2                      TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+EXAMMARK                       TABLE                                            
+EMPLOYEE                       TABLE                                            
+DEPARTMENT                     TABLE                                            
+
+14 rows selected.
+
+SQL> select * from department2 where depart_name='it' or depart_name='sales' or depart_name='marketing' ;
+
+   DEPT_NO DEPART_NAME                    LOCATION                              
+---------- ------------------------------ --------------------                  
+        10 it                             anand                                 
+        20 sales                          bombay                                
+        50 marketing                      surat                                 
+
+SQL> select *from employee2 where post='anayst' and salary >50000;
+
+no rows selected
+
+SQL> select *from employee2 where post='analyst' and salary >50000;
+
+    EMP_ID EMP_NAME                       POST                          MGR_ID  
+---------- ------------------------------ ------------------------- ----------  
+HIRE_DATE     SALARY COMMISSION    DEPT_ID                                      
+--------- ---------- ---------- ----------                                      
+     13654 parth vasoya                   analyst                        12675  
+27-DEC-95      90000                    10                                      
+                                                                                
+     18654 ramesh vasoya                  analyst                        12675  
+15-MAY-93      85000                    10                                      
+                                                                                
+
+SQL> commit;
+
+Commit complete.
+
+SQL> 

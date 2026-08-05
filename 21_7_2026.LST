@@ -1,0 +1,121 @@
+select *from tab;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+DEPARTMENT2                    TABLE                                            
+STUDENT                        TABLE                                            
+STUD                           TABLE                                            
+EMPLOYEBHARGAV                 TABLE                                            
+DEPARTMENTBHARGAV              TABLE                                            
+BIN$HWhpe31sSsSVOiezFGdOYg==$0 TABLE                                            
+EMPLOYEE2                      TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+EXAMMARK                       TABLE                                            
+EMPLOYEE                       TABLE                                            
+DEPARTMENT                     TABLE                                            
+
+14 rows selected.
+
+SQL> select *from employee2 where salary>=25000 and dept_id='10' ;
+
+    EMP_ID EMP_NAME                       POST                          MGR_ID  
+---------- ------------------------------ ------------------------- ----------  
+HIRE_DATE     SALARY COMMISSION    DEPT_ID                                      
+--------- ---------- ---------- ----------                                      
+     12675 tanmay domadiya                president                             
+05-JUL-85     124000                    10                                      
+                                                                                
+     14567 seema lava                     programmer                     13654  
+17-JUL-94      35000                    10                                      
+                                                                                
+     16754 krupa vala                     programmer                     13654  
+13-AUG-92      30000                    10                                      
+                                                                                
+
+    EMP_ID EMP_NAME                       POST                          MGR_ID  
+---------- ------------------------------ ------------------------- ----------  
+HIRE_DATE     SALARY COMMISSION    DEPT_ID                                      
+--------- ---------- ---------- ----------                                      
+     13654 parth vasoya                   analyst                        12675  
+27-DEC-95      90000                    10                                      
+                                                                                
+     18654 ramesh vasoya                  analyst                        12675  
+15-MAY-93      85000                    10                                      
+                                                                                
+
+SQL> select *from employee2 where emp_name and post and salary ;
+select *from employee2 where emp_name and post and salary 
+                                      *
+ERROR at line 1:
+ORA-00920: invalid relational operator 
+
+
+SQL> select  emp_name , post, salary from employee2 ;
+
+EMP_NAME                       POST                          SALARY             
+------------------------------ ------------------------- ----------             
+bansipadia                     clerk                          15000             
+radha sharma                   salesman                       12000             
+tanmay domadiya                president                     124000             
+suraj prakash                  salesman                       14650             
+seema lava                     programmer                     35000             
+krupa vala                     programmer                     30000             
+kalpana joshi                  clerk                          17000             
+keval raval                    salesman                       18000             
+parth vasoya                   analyst                        90000             
+ramesh vasoya                  analyst                        85000             
+
+10 rows selected.
+
+SQL> select *from employee where salary='sum';
+select *from employee where salary='sum'
+                            *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier 
+
+
+SQL>  select *from employee where salary 'sum';
+ select *from employee where salary 'sum'
+                                    *
+ERROR at line 1:
+ORA-00920: invalid relational operator 
+
+
+SQL> select sum (salary) from employee2;
+
+SUM(SALARY)                                                                     
+-----------                                                                     
+     440650                                                                     
+
+SQL> select *from department2 where location='anand';
+
+   DEPT_NO DEPART_NAME                    LOCATION                              
+---------- ------------------------------ --------------------                  
+        10 it                             anand                                 
+        40 finance                        anand                                 
+
+SQL> select * from department2 where dept_no=10 or dept_no=20 or dept_no=40 ;
+
+   DEPT_NO DEPART_NAME                    LOCATION                              
+---------- ------------------------------ --------------------                  
+        10 it                             anand                                 
+        20 sales                          bombay                                
+        40 finance                        anand                                 
+
+SQL> select *from department2 where dept_no=50;
+
+   DEPT_NO DEPART_NAME                    LOCATION                              
+---------- ------------------------------ --------------------                  
+        50 marketing                      surat                                 
+
+SQL> commit;
+
+Commit complete.
+
+SQL> 

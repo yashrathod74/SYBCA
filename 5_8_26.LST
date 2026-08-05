@@ -1,0 +1,145 @@
+select *from emp3;
+
+no rows selected
+
+SQL> insert into emp3 values ('1','hit'
+  2  
+SQL> 
+SQL>   insert into emp3 values ('1','hit','infosystem ltd','35999','mumbai');
+
+1 row created.
+
+SQL> insert into emp3 values ('1','hit','infosystem ltd','35999','mumbai');
+
+1 row created.
+
+SQL> insert into emp3 values ('1','rudra','infosystem ltd','35999','mumbai');
+
+1 row created.
+
+SQL> insert into emp3 values ('1','dev','infosystem ltd','35999','mumbai');
+
+1 row created.
+
+SQL> insert into emp3 values ('1','rushit','realince','35999','bombay');
+
+1 row created.
+
+SQL> insert into emp3 values ('1','rushit','samsung','35999','delhi');
+
+1 row created.
+
+SQL> select *from emp3;
+
+    EMP_NO EMP_NAME        COMPANY                  SALARY CITY                 
+---------- --------------- -------------------- ---------- ------------         
+         1 hit             infosystem ltd            35999 mumbai               
+         1 hit             infosystem ltd            35999 mumbai               
+         1 rudra           infosystem ltd            35999 mumbai               
+         1 dev             infosystem ltd            35999 mumbai               
+         1 rushit          realince                  35999 bombay               
+         1 rushit          samsung                   35999 delhi                
+
+6 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> delete *from emp3;
+delete *from emp3
+       *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> delect *from emp3 ;
+SP2-0734: unknown command beginning "delect *fr..." - rest of line ignored.
+SQL> truncate table emp3;
+
+Table truncated.
+
+SQL> desc emp3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_NO                                             NUMBER(10)
+ EMP_NAME                                           VARCHAR2(15)
+ COMPANY                                            VARCHAR2(20)
+ SALARY                                             NUMBER(7)
+ CITY                                               VARCHAR2(12)
+
+SQL> select *from emp3;
+
+no rows selected
+
+SQL> insert into emp3 values ('1','hit','infosystem ltd','35999','mumbai');
+
+1 row created.
+
+SQL> insert into emp3 values ('2','rudra','infosystem ltd','25000','mumbai');
+
+1 row created.
+
+SQL> insert into emp3 values ('3','dev','infosystem ltd','34000','mumbai');
+
+1 row created.
+
+SQL> insert into emp3 values ('4','rushit','realince','44000','bombay');
+
+1 row created.
+
+SQL> insert into emp3 values ('5','rohit','samsung','37000','delhi');
+
+1 row created.
+
+SQL> select *from emp3;
+
+    EMP_NO EMP_NAME        COMPANY                  SALARY CITY                 
+---------- --------------- -------------------- ---------- ------------         
+         1 hit             infosystem ltd            35999 mumbai               
+         2 rudra           infosystem ltd            25000 mumbai               
+         3 dev             infosystem ltd            34000 mumbai               
+         4 rushit          realince                  44000 bombay               
+         5 rohit           samsung                   37000 delhi                
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select *from emp3 where company='infosystem ltd';
+
+    EMP_NO EMP_NAME        COMPANY                  SALARY CITY                 
+---------- --------------- -------------------- ---------- ------------         
+         1 hit             infosystem ltd            35999 mumbai               
+         2 rudra           infosystem ltd            25000 mumbai               
+         3 dev             infosystem ltd            34000 mumbai               
+
+SQL>  select name from emp3 where infosystem ltd;
+ select name from emp3 where infosystem ltd
+                                        *
+ERROR at line 1:
+ORA-00920: invalid relational operator 
+
+
+SQL>  select name from emp3 where 'infosystem ltd';
+ select name from emp3 where 'infosystem ltd'
+                                            *
+ERROR at line 1:
+ORA-00920: invalid relational operator 
+
+
+SQL>  select emp_name from emp3 where 'infosystem ltd';
+ select emp_name from emp3 where 'infosystem ltd'
+                                                *
+ERROR at line 1:
+ORA-00920: invalid relational operator 
+
+
+SQL>  select emp_name from emp3 where company name='infosystem ltd';
+ select emp_name from emp3 where company name='infosystem ltd'
+                                         *
+ERROR at line 1:
+ORA-00920: invalid relational operator 
+
+
+SQL> 

@@ -1,0 +1,147 @@
+select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+STUDENT                        TABLE                                            
+STUD                           TABLE                                            
+EMPLOYEBHARGAV                 TABLE                                            
+DEPARTMENTBHARGAV              TABLE                                            
+BIN$HWhpe31sSsSVOiezFGdOYg==$0 TABLE                                            
+EMPLOYEE2                      TABLE                                            
+EXAMMARK                       TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+EMPLOYEE                       TABLE                                            
+DEPARTMENT                     TABLE                                            
+
+13 rows selected.
+
+SQL> select *from employee2;
+
+no rows selected
+
+SQL> insert into employee2 values (12345,'bansipadia','clerk','',date'1990-11-18',15000,'',10);
+
+1 row created.
+
+SQL> insert into employee2 values (13254,'radha sharma','salesman',12345,date'1990-11-25,12000,4000,20);
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> insert into employee2 values (13254,'radha sharma','salesman',12345,date'1990-11-25',12000,4000,20);
+
+1 row created.
+
+SQL> insert into employee2 values (12675,'tanmay domadiya','president','',date'1985-07-05',124000,'',10);
+
+1 row created.
+
+SQL> insert into employee2 values (13457,'suraj prakash','salesman',12345,date'1992-08-12',14650,1700,30);
+
+1 row created.
+
+SQL> insert into employee2 values (14567,'seema lava','programmer',13654,date'1994-07-17',35000,'',10);
+
+1 row created.
+
+SQL> insert into employee2 values(16754,'krupa vala','programmer',13654,date'1992-08-13',30000,'',10);
+
+1 row created.
+
+SQL> commite ;
+SP2-0042: unknown command "commite " - rest of line ignored.
+SQL> commit
+  2  
+SQL> comit;
+SP2-0042: unknown command "comit" - rest of line ignored.
+SQL> select *from employee2;
+
+    EMP_ID EMP_NAME                       POST                          MGR_ID  
+---------- ------------------------------ ------------------------- ----------  
+HIRE_DATE     SALARY COMMISSION    DEPT_ID                                      
+--------- ---------- ---------- ----------                                      
+     12345 bansipadia                     clerk                                 
+18-NOV-90      15000                    10                                      
+                                                                                
+     13254 radha sharma                   salesman                       12345  
+25-NOV-90      12000       4000         20                                      
+                                                                                
+     12675 tanmay domadiya                president                             
+05-JUL-85     124000                    10                                      
+                                                                                
+
+    EMP_ID EMP_NAME                       POST                          MGR_ID  
+---------- ------------------------------ ------------------------- ----------  
+HIRE_DATE     SALARY COMMISSION    DEPT_ID                                      
+--------- ---------- ---------- ----------                                      
+     13457 suraj prakash                  salesman                       12345  
+12-AUG-92      14650       1700         30                                      
+                                                                                
+     14567 seema lava                     programmer                     13654  
+17-JUL-94      35000                    10                                      
+                                                                                
+     16754 krupa vala                     programmer                     13654  
+13-AUG-92      30000                    10                                      
+                                                                                
+
+6 rows selected.
+
+SQL> commit ;
+
+Commit complete.
+
+SQL> insert into employee2 values (14562,'kalpana joshi','clerk','',date'1990-09-17',17000,'',40);
+
+1 row created.
+
+SQL> select *from employee2;
+
+    EMP_ID EMP_NAME                       POST                          MGR_ID  
+---------- ------------------------------ ------------------------- ----------  
+HIRE_DATE     SALARY COMMISSION    DEPT_ID                                      
+--------- ---------- ---------- ----------                                      
+     12345 bansipadia                     clerk                                 
+18-NOV-90      15000                    10                                      
+                                                                                
+     13254 radha sharma                   salesman                       12345  
+25-NOV-90      12000       4000         20                                      
+                                                                                
+     12675 tanmay domadiya                president                             
+05-JUL-85     124000                    10                                      
+                                                                                
+
+    EMP_ID EMP_NAME                       POST                          MGR_ID  
+---------- ------------------------------ ------------------------- ----------  
+HIRE_DATE     SALARY COMMISSION    DEPT_ID                                      
+--------- ---------- ---------- ----------                                      
+     13457 suraj prakash                  salesman                       12345  
+12-AUG-92      14650       1700         30                                      
+                                                                                
+     14567 seema lava                     programmer                     13654  
+17-JUL-94      35000                    10                                      
+                                                                                
+     16754 krupa vala                     programmer                     13654  
+13-AUG-92      30000                    10                                      
+                                                                                
+
+    EMP_ID EMP_NAME                       POST                          MGR_ID  
+---------- ------------------------------ ------------------------- ----------  
+HIRE_DATE     SALARY COMMISSION    DEPT_ID                                      
+--------- ---------- ---------- ----------                                      
+     14562 kalpana joshi                  clerk                                 
+17-SEP-90      17000                    40                                      
+                                                                                
+
+7 rows selected.
+
+SQL> commit ;
+
+Commit complete.
+
+SQL> 

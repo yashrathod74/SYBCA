@@ -1,0 +1,232 @@
+selct *from tab;
+SP2-0734: unknown command beginning "selct *fro..." - rest of line ignored.
+SQL> select *from tab;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+DEPARTMENT2                    TABLE                                            
+MADHAV                         TABLE                                            
+STUDENT                        TABLE                                            
+STUD                           TABLE                                            
+EMPLOYEBHARGAV                 TABLE                                            
+DEPARTMENTBHARGAV              TABLE                                            
+BIN$HWhpe31sSsSVOiezFGdOYg==$0 TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+EMPLOYEE2                      TABLE                                            
+EXAMMARK                       TABLE                                            
+EMPLOYEE                       TABLE                                            
+DEPARTMENT                     TABLE                                            
+
+15 rows selected.
+
+SQL> select *from employee2 where post!='president';
+
+    EMP_ID EMP_NAME                       POST                          MGR_ID  
+---------- ------------------------------ ------------------------- ----------  
+HIRE_DATE     SALARY COMMISSION    DEPT_ID                                      
+--------- ---------- ---------- ----------                                      
+     12345 bansipadia                     clerk                                 
+18-NOV-90      15000                    10                                      
+                                                                                
+     13254 radha sharma                   salesman                       12345  
+25-NOV-90      12000       4000         20                                      
+                                                                                
+     13457 suraj prakash                  salesman                       12345  
+12-AUG-92      14650       1700         30                                      
+                                                                                
+
+    EMP_ID EMP_NAME                       POST                          MGR_ID  
+---------- ------------------------------ ------------------------- ----------  
+HIRE_DATE     SALARY COMMISSION    DEPT_ID                                      
+--------- ---------- ---------- ----------                                      
+     14567 seema lava                     programmer                     13654  
+17-JUL-94      35000                    10                                      
+                                                                                
+     16754 krupa vala                     programmer                     13654  
+13-AUG-92      30000                    10                                      
+                                                                                
+     14562 kalpana joshi                  clerk                                 
+17-SEP-90      17000                    40                                      
+                                                                                
+
+    EMP_ID EMP_NAME                       POST                          MGR_ID  
+---------- ------------------------------ ------------------------- ----------  
+HIRE_DATE     SALARY COMMISSION    DEPT_ID                                      
+--------- ---------- ---------- ----------                                      
+     12435 keval raval                    salesman                       12345  
+20-OCT-90      18000       6500         20                                      
+                                                                                
+     13654 parth vasoya                   analyst                        12675  
+27-DEC-95      90000                    10                                      
+                                                                                
+     18654 ramesh vasoya                  analyst                        12675  
+15-MAY-93      85000                    10                                      
+                                                                                
+
+9 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from department2 where post='depart_name','location';
+select * from department2 where post='depart_name','location'
+                                                  *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select ('depart_name','location') from department2;
+select ('depart_name','location') from department2
+                     *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> select *from department2 where depart_name and location;
+select *from department2 where depart_name and location
+                                           *
+ERROR at line 1:
+ORA-00920: invalid relational operator 
+
+
+SQL> select depart_name , location from department2;
+
+DEPART_NAME                    LOCATION                                         
+------------------------------ --------------------                             
+it                             anand                                            
+sales                          bombay                                           
+purchase                       surat                                            
+finance                        anand                                            
+marketing                      surat                                            
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select salary from employee2;
+
+    SALARY                                                                      
+----------                                                                      
+     15000                                                                      
+     12000                                                                      
+    124000                                                                      
+     14650                                                                      
+     35000                                                                      
+     30000                                                                      
+     17000                                                                      
+     18000                                                                      
+     90000                                                                      
+     85000                                                                      
+
+10 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select *from employee2 where hire_date'1990';
+select *from employee2 where hire_date'1990'
+                                      *
+ERROR at line 1:
+ORA-00920: invalid relational operator 
+
+
+SQL>  select *from employee2 where hire_date='1990';
+ select *from employee2 where hire_date='1990'
+                                        *
+ERROR at line 1:
+ORA-01861: literal does not match format string 
+
+
+SQL> 
+SQL> select *from employee2 where hire_date=date'1990';
+select *from employee2 where hire_date=date'1990'
+                                           *
+ERROR at line 1:
+ORA-01861: literal does not match format string 
+
+
+SQL> select *from employee2 where
+  2  hire_date'1990';
+hire_date'1990'
+         *
+ERROR at line 2:
+ORA-00920: invalid relational operator 
+
+
+SQL>  select *from employee2 where
+  2  
+SQL> 
+SQL> 
+SQL> select * from employee2 where hire_date='1990-01-01' between '1990-12-31';
+select * from employee2 where hire_date='1990-01-01' between '1990-12-31'
+                                                     *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL>  select * from employee2 where hire_date='01-01-1990' between '31-12-1990';
+ select * from employee2 where hire_date='01-01-1990' between '31-12-1990'
+                                                      *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select *from employee2 where hire_date between date'1990-01-01' and date'1999-12-31';
+
+    EMP_ID EMP_NAME                       POST                          MGR_ID  
+---------- ------------------------------ ------------------------- ----------  
+HIRE_DATE     SALARY COMMISSION    DEPT_ID                                      
+--------- ---------- ---------- ----------                                      
+     12345 bansipadia                     clerk                                 
+18-NOV-90      15000                    10                                      
+                                                                                
+     13254 radha sharma                   salesman                       12345  
+25-NOV-90      12000       4000         20                                      
+                                                                                
+     13457 suraj prakash                  salesman                       12345  
+12-AUG-92      14650       1700         30                                      
+                                                                                
+
+    EMP_ID EMP_NAME                       POST                          MGR_ID  
+---------- ------------------------------ ------------------------- ----------  
+HIRE_DATE     SALARY COMMISSION    DEPT_ID                                      
+--------- ---------- ---------- ----------                                      
+     14567 seema lava                     programmer                     13654  
+17-JUL-94      35000                    10                                      
+                                                                                
+     16754 krupa vala                     programmer                     13654  
+13-AUG-92      30000                    10                                      
+                                                                                
+     14562 kalpana joshi                  clerk                                 
+17-SEP-90      17000                    40                                      
+                                                                                
+
+    EMP_ID EMP_NAME                       POST                          MGR_ID  
+---------- ------------------------------ ------------------------- ----------  
+HIRE_DATE     SALARY COMMISSION    DEPT_ID                                      
+--------- ---------- ---------- ----------                                      
+     12435 keval raval                    salesman                       12345  
+20-OCT-90      18000       6500         20                                      
+                                                                                
+     13654 parth vasoya                   analyst                        12675  
+27-DEC-95      90000                    10                                      
+                                                                                
+     18654 ramesh vasoya                  analyst                        12675  
+15-MAY-93      85000                    10                                      
+                                                                                
+
+9 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> 
