@@ -1,0 +1,177 @@
+CREATE TABLE def10_customer (
+  2      cname VARCHAR(50) PRIMARY KEY,
+  3      city VARCHAR(50) NOT NULL
+  4  );
+
+Table created.
+
+SQL> 
+SQL> CREATE TABLE def10_branch (
+  2      bname VARCHAR(50) PRIMARY KEY,
+  3      city VARCHAR(50) NOT NULL
+  4  );
+
+Table created.
+
+SQL> 
+SQL> CREATE TABLE def_10deposit (
+  2      actno INT PRIMARY KEY,
+  3      cname VARCHAR(50),
+  4      bname VARCHAR(50),
+  5      amount DECIMAL(10, 2),
+  6      adate DATE,
+  7      FOREIGN KEY (cname) REFERENCES def10_customer(cname),
+  8      FOREIGN KEY (bname) REFERENCES def10_branch(bname)
+  9  );
+
+Table created.
+
+SQL> 
+SQL> CREATE TABLE def10_borrow (
+  2      loanno INT PRIMARY KEY,
+  3      cname VARCHAR(50),
+  4      bname VARCHAR(50),
+  5      amount DECIMAL(10, 2),
+  6      FOREIGN KEY (cname) REFERENCES def10_customer(cname),
+  7      FOREIGN KEY (bname) REFERENCES def10_branch(bname)
+  8  );
+
+Table created.
+
+SQL> INSERT INTO def10_customer (cname, city) VALUES ('Anil', 'Mumbai');
+
+1 row created.
+
+SQL> INSERT INTO def10_customer (cname, city) VALUES ('Sunil', 'Mumbai');
+
+1 row created.
+
+SQL> INSERT INTO def10_customer (cname, city) VALUES ('Mehool', 'Nagpur');
+
+1 row created.
+
+SQL> INSERT INTO def10_customer (cname, city) VALUES ('Pramod', 'Nagpur');
+
+1 row created.
+
+SQL> INSERT INTO def10_customer (cname, city) VALUES ('Vijay', 'Delhi');
+
+1 row created.
+
+SQL> INSERT INTO def10_branch (bname, city) VALUES ('VRCE', 'Nagpur');
+
+1 row created.
+
+SQL> INSERT INTO def10_branch (bname, city) VALUES ('Dharampeth', 'Nagpur');
+
+1 row created.
+
+SQL> INSERT INTO def10_branch (bname, city) VALUES ('MG Road', 'Mumbai');
+
+1 row created.
+
+SQL> INSERT INTO def10_branch (bname, city) VALUES ('Connaught Place', 'Delhi');
+
+1 row created.
+
+SQL> INSERT INTO def_10deposit (actno, cname, bname, amount, adate) VALUES (101, 'Anil', 'VRCE', 1500.00, date'2024-01-15');
+
+1 row created.
+
+SQL> INSERT INTO def_10deposit (actno, cname, bname, amount, adate) VALUES (102, 'Sunil', 'MG Road', 5000.00, date'2024-02-10');
+
+1 row created.
+
+SQL> INSERT INTO def_10deposit (actno, cname, bname, amount, adate) VALUES (103, 'Mehool', 'VRCE', 3000.00, date'2024-03-05');
+
+1 row created.
+
+SQL> INSERT INTO def_10deposit (actno, cname, bname, amount, adate) VALUES (104, 'Pramod', 'Dharampeth', 800.00, date'2024-03-20');
+
+1 row created.
+
+SQL> INSERT INTO def_10deposit (actno, cname, bname, amount, adate) VALUES (105, 'Vijay', 'Connaught Place', 2500.00, date'2024-04-01');
+
+1 row created.
+
+SQL> INSERT INTO def10_borrow (loanno, cname, bname, amount) VALUES (201, 'Anil', 'VRCE', 2500.00);
+
+1 row created.
+
+SQL> INSERT INTO def10_borrow (loanno, cname, bname, amount) VALUES (202, 'Mehool', 'VRCE', 3500.00);
+
+1 row created.
+
+SQL> INSERT INTO def10_borrow (loanno, cname, bname, amount) VALUES (203, 'Sunil', 'Dharampeth', 1500.00);
+
+1 row created.
+
+SQL> INSERT INTO def10_borrow (loanno, cname, bname, amount) VALUES (204, 'Pramod', 'Dharampeth', 2200.00);
+
+1 row created.
+
+SQL> 
+SQL> commit;
+
+Commit complete.
+
+
+SQL> SELECT DISTINCT c.cname
+  2  FROM def10_customer c
+  3  JOIN def_10deposit d ON c.cname = d.cname
+  4  JOIN def10_borrow br ON c.cname = br.cname
+  5  WHERE c.city = 'Nagpur';
+
+CNAME                                                                           
+--------------------------------------------------                              
+Mehool                                                                          
+Pramod                                                                          
+
+SQL> 
+SQL> SELECT DISTINCT br.cname
+  2  FROM def10_borrow br
+  3  JOIN def_10deposit d ON br.cname = d.cname
+  4  WHERE d.amount > 1000 AND br.amount > 2000;
+
+CNAME                                                                           
+--------------------------------------------------                              
+Anil                                                                            
+Mehool                                                                          
+
+SQL> SELECT
+  2      br.loanno,
+  3      br.amount AS loan_amount,
+  4      d.actno,
+  5      d.amount AS deposit_amount
+  6  FROM def10_customer c
+  7  JOIN def_10deposit d ON c.cname = d.cname
+  8  JOIN def10_borrow br ON c.cname = br.cname
+  9  WHERE c.city = 'Nagpur';
+
+    LOANNO LOAN_AMOUNT      ACTNO DEPOSIT_AMOUNT                                
+---------- ----------- ---------- --------------                                
+       202        3500        103           3000                                
+       204        2200        104            800                                
+
+SQL> SELECT DISTINCT
+  2      c.city AS living_city,
+  3      b.city AS branch_city
+  4  FROM def10_customer c
+  5  LEFT JOIN def_10deposit d ON c.cname = d.cname
+  6  LEFT JOIN def10_borrow br ON c.cname = br.cname
+  7  LEFT JOIN def10_branch b ON (d.bname = b.bname OR br.bname = b.bname)
+  8  WHERE c.cname = 'Anil';
+
+LIVING_CITY                                                                     
+--------------------------------------------------                              
+BRANCH_CITY                                                                     
+--------------------------------------------------                              
+Mumbai                                                                          
+Nagpur                                                                          
+                                                                                
+
+SQL> commit;
+
+Commit complete.
+
+SQL> 
