@@ -1,0 +1,29 @@
+SELECT DISTINCT c.cname
+FROM def10_customer c
+LEFT JOIN def_10deposit d ON c.cname = d.cname
+LEFT JOIN def10_borrow br ON c.cname = br.cname
+LEFT JOIN def10_branch bd ON d.bname = bd.bname
+LEFT JOIN def10_branch bb ON br.bname = bb.bname
+WHERE c.city = 'Mumbai' 
+  AND (bd.city = 'Nagpur' OR bb.city = 'Nagpur');
+  
+cname 
+--------------------------------------------------
+anil 
+sunil
+
+------------------------------------------------------------------------------------------------------------------------------
+SQL> SELECT DISTINCT c.cname
+  2  FROM def10_customer c
+  3  LEFT JOIN def_10deposit d ON c.cname = d.cname
+  4  LEFT JOIN def10_branch b1 ON d.bname = b1.bname
+  5  LEFT JOIN def10_borrow br ON c.cname = br.cname
+  6  LEFT JOIN def10_branch b2 ON br.bname = b2.bname
+  7  WHERE c.city = b1.city OR c.city = b2.city;
+
+CNAME
+--------------------------------------------------
+Mehool
+Pramod
+Sunil
+Vijay
