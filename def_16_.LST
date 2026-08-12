@@ -1,0 +1,169 @@
+CREATE TABLE def16_Salesman (
+  2      Sid INT PRIMARY KEY,
+  3      name VARCHAR(100) NOT NULL,
+  4      city VARCHAR(100) NOT NULL,
+  5      commission DECIMAL(5, 2) NOT NULL
+  6  );
+
+Table created.
+
+SQL> CREATE TABLE def16_Customer (
+  2      C_id INT PRIMARY KEY,
+  3      cname VARCHAR(100) NOT NULL,
+  4      city VARCHAR(100) NOT NULL,
+  5      grade INT,
+  6      salesman_id INT,
+  7      FOREIGN KEY (salesman_id) REFERENCES def16_Salesman(Sid)
+  8  );
+
+Table created.
+
+SQL> INSERT INTO def16_Salesman (Sid, name, city, commission) VALUES (101, 'James Hoog', 'New York', 0.15);
+
+1 row created.
+
+SQL> INSERT INTO def16_Salesman (Sid, name, city, commission) VALUES (102, 'Nail Knite', 'Paris', 0.13);
+
+1 row created.
+
+SQL> INSERT INTO def16_Salesman (Sid, name, city, commission) VALUES (103, 'Lauson Hen', 'London', 0.12);
+
+1 row created.
+
+SQL> INSERT INTO def16_Salesman (Sid, name, city, commission) VALUES (104, 'Pit Alex', 'London', 0.11);
+
+1 row created.
+
+SQL> INSERT INTO def16_Salesman (Sid, name, city, commission) VALUES (105, 'Ryan Mcdonald', 'San Jose', 0.14);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO def16_Customer (C_id, cname, city, grade, salesman_id) VALUES (201, 'Nick Rimando', 'New York', 100, 101);
+
+1 row created.
+
+SQL> INSERT INTO def16_Customer (C_id, cname, city, grade, salesman_id) VALUES(202, 'Brad Guzan', 'London', 200, 103);
+
+1 row created.
+
+SQL> INSERT INTO def16_Customer (C_id, cname, city, grade, salesman_id) VALUES(203, 'Jozy Altidore', 'Moscow', 300, 102);
+
+1 row created.
+
+SQL> INSERT INTO def16_Customer (C_id, cname, city, grade, salesman_id) VALUES(204, 'Fabian Johnson', 'Paris', 300, 102);
+
+1 row created.
+
+SQL> INSERT INTO def16_Customer (C_id, cname, city, grade, salesman_id) VALUES(205, 'Graham Zusi', 'London', 400, 104);
+
+1 row created.
+
+SQL> SELECT
+  2      c.cname AS customer_name,
+  3      s.name AS salesman_name
+  4  FROM def16_Customer c
+  5  JOIN def16_Salesman s
+  6    ON c.salesman_id = s.Sid;
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------------------------------------
+SALESMAN_NAME                                                                   
+--------------------------------------------------------------------------------
+Nick Rimando                                                                    
+James Hoog                                                                      
+                                                                                
+Fabian Johnson                                                                  
+Nail Knite                                                                      
+                                                                                
+Jozy Altidore                                                                   
+Nail Knite                                                                      
+                                                                                
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------------------------------------
+SALESMAN_NAME                                                                   
+--------------------------------------------------------------------------------
+Brad Guzan                                                                      
+Lauson Hen                                                                      
+                                                                                
+Graham Zusi                                                                     
+Pit Alex                                                                        
+                                                                                
+
+SQL> SELECT name AS entity_name, city, 'Salesman' AS entity_type
+  2  FROM def16_Salesman
+  3  WHERE city = 'London'
+  4  UNION
+  5  SELECT cname AS entity_name, city, 'Customer' AS entity_type
+  6  FROM def16_Customer
+  7  WHERE city = 'London';
+
+ENTITY_NAME                                                                     
+--------------------------------------------------------------------------------
+CITY                                                                            
+--------------------------------------------------------------------------------
+ENTITY_T                                                                        
+--------                                                                        
+Brad Guzan                                                                      
+London                                                                          
+Customer                                                                        
+                                                                                
+Graham Zusi                                                                     
+London                                                                          
+Customer                                                                        
+
+ENTITY_NAME                                                                     
+--------------------------------------------------------------------------------
+CITY                                                                            
+--------------------------------------------------------------------------------
+ENTITY_T                                                                        
+--------                                                                        
+                                                                                
+Lauson Hen                                                                      
+London                                                                          
+Salesman                                                                        
+                                                                                
+Pit Alex                                                                        
+London                                                                          
+
+ENTITY_NAME                                                                     
+--------------------------------------------------------------------------------
+CITY                                                                            
+--------------------------------------------------------------------------------
+ENTITY_T                                                                        
+--------                                                                        
+Salesman                                                                        
+                                                                                
+
+SQL> SELECT
+  2      name AS salesman_name,
+  3      city
+  4  FROM def16_Salesman;
+
+SALESMAN_NAME                                                                   
+--------------------------------------------------------------------------------
+CITY                                                                            
+--------------------------------------------------------------------------------
+James Hoog                                                                      
+New York                                                                        
+                                                                                
+Nail Knite                                                                      
+Paris                                                                           
+                                                                                
+Lauson Hen                                                                      
+London                                                                          
+                                                                                
+
+SALESMAN_NAME                                                                   
+--------------------------------------------------------------------------------
+CITY                                                                            
+--------------------------------------------------------------------------------
+Pit Alex                                                                        
+London                                                                          
+                                                                                
+Ryan Mcdonald                                                                   
+San Jose                                                                        
+                                                                                
+
+SQL> 

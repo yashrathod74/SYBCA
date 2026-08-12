@@ -1,0 +1,66 @@
+CREATE TABLE def18_Company_master (
+    Com_id INT PRIMARY KEY,
+    com_name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE def18_Item_Master (
+    Item_id INT PRIMARY KEY,
+    Item_name VARCHAR(100) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    company_code INT,
+    FOREIGN KEY (company_code) REFERENCES def18_Company_master(Com_id)
+);
+
+
+
+INSERT INTO def18_Company_master (Com_id, com_name) VALUES (11, 'Samsung');
+INSERT INTO def18_Company_master (Com_id, com_name) VALUES (12, 'Apple');
+INSERT INTO def18_Company_master (Com_id, com_name) VALUES (13, 'Sony');
+INSERT INTO def18_Company_master (Com_id, com_name) VALUES (14, 'LG');
+
+INSERT INTO def18_Item_Master (Item_id, Item_name, price, company_code) VALUES (101, 'Galaxy S23', 750.00, 11);
+INSERT INTO def18_Item_Master (Item_id, Item_name, price, company_code) VALUES (102, 'Smart TV', 400.00, 11);
+INSERT INTO def18_Item_Master (Item_id, Item_name, price, company_code) VALUES(103, 'iPhone 15', 900.00, 12);
+INSERT INTO def18_Item_Master (Item_id, Item_name, price, company_code) VALUES(104, 'AirPods', 200.00, 12);
+INSERT INTO def18_Item_Master (Item_id, Item_name, price, company_code) VALUES(105, 'PlayStation 5', 500.00, 13);
+INSERT INTO def18_Item_Master (Item_id, Item_name, price, company_code) VALUES (106, 'Headphones', 150.00, 13);
+INSERT INTO def18_Item_Master (Item_id, Item_name, price, company_code) VALUES (107, 'Monitor', 300.00, 14);
+
+
+SELECT 
+    i.Item_id,
+    i.Item_name,
+    i.price,
+    i.company_code,
+    c.com_name AS producer_company
+FROM def18_Item_Master i
+JOIN def18_Company_master c 
+  ON i.company_code = c.Com_id;
+  
+  
+SELECT 
+    i.Item_name,
+    i.price,
+    c.com_name
+FROM def18_Item_Master i
+JOIN def18_Company_master c 
+  ON i.company_code = c.Com_id;
+  
+  
+SELECT 
+    c.com_name,
+    AVG(i.price) AS average_price
+FROM def18_Company_master c
+JOIN def18_Item_Master i 
+  ON c.Com_id = i.company_code
+GROUP BY c.Com_id, c.com_name;
+
+
+SELECT 
+    c.com_name,
+    AVG(i.price) AS average_price
+FROM def18_Company_master c
+JOIN def18_Item_Master i 
+  ON c.Com_id = i.company_code
+GROUP BY c.Com_id, c.com_name
+HAVING AVG(i.price) >= 350;

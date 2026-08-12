@@ -1,0 +1,84 @@
+CREATE TABLE def17_emp_details (
+  2      Emp_no INT PRIMARY KEY,
+  3      fname VARCHAR(50) NOT NULL,
+  4      lname VARCHAR(50) NOT NULL,
+  5      emp_dept INT NOT NULL
+  6  );
+
+Table created.
+
+SQL> 
+SQL> INSERT INTO def17_emp_details (Emp_no, fname, lname, emp_dept) VALUES (1, 'Aarav', 'Doshi', 57);
+
+1 row created.
+
+SQL> INSERT INTO def17_emp_details (Emp_no, fname, lname, emp_dept) VALUES (2, 'Priya', 'Joshi', 42);
+
+1 row created.
+
+SQL> INSERT INTO def17_emp_details (Emp_no, fname, lname, emp_dept) VALUES (3, 'Rohan', 'Shah', 57);
+
+1 row created.
+
+SQL> INSERT INTO def17_emp_details (Emp_no, fname, lname, emp_dept) VALUES (4, 'Neha', 'Doshi', 30);
+
+1 row created.
+
+SQL> INSERT INTO def17_emp_details (Emp_no, fname, lname, emp_dept) VALUES (5, 'Amit', 'Patel', 57);
+
+1 row created.
+
+SQL> INSERT INTO def17_emp_details (Emp_no, fname, lname, emp_dept) VALUES (6, 'Sneha', 'Mehta', 15);
+
+1 row created.
+
+SQL> 
+SQL> SELECT DISTINCT lname
+  2  FROM def17_emp_details;
+
+LNAME                                                                           
+--------------------------------------------------                              
+Mehta                                                                           
+Joshi                                                                           
+Shah                                                                            
+Patel                                                                           
+Doshi                                                                           
+
+SQL> SELECT *
+  2  FROM def17_emp_details
+  3  WHERE emp_dept = 57;
+
+    EMP_NO FNAME                                                                
+---------- --------------------------------------------------                   
+LNAME                                                EMP_DEPT                   
+-------------------------------------------------- ----------                   
+         1 Aarav                                                                
+Doshi                                                      57                   
+                                                                                
+         3 Rohan                                                                
+Shah                                                       57                   
+                                                                                
+         5 Amit                                                                 
+Patel                                                      57                   
+                                                                                
+
+SQL> 
+SQL> SELECT *
+  2  FROM def17_emp_details
+  3  WHERE lname IN ('Doshi', 'Joshi');
+
+    EMP_NO FNAME                                                                
+---------- --------------------------------------------------                   
+LNAME                                                EMP_DEPT                   
+-------------------------------------------------- ----------                   
+         1 Aarav                                                                
+Doshi                                                      57                   
+                                                                                
+         2 Priya                                                                
+Joshi                                                      42                   
+                                                                                
+         4 Neha                                                                 
+Doshi                                                      30                   
+                                                                                
+
+SQL> 
