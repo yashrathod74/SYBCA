@@ -1,0 +1,95 @@
+SQL> CREATE TABLE def14_Orders (
+  2      Ord_no INT PRIMARY KEY,
+  3      purch_amt DECIMAL(10,2),
+  4      ord_date DATE,
+  5      customer_id INT,
+  6      salesman_id INT
+  7  );
+
+Table created.
+
+SQL> INSERT INTO def14_Orders (Ord_no, purch_amt, ord_date, customer_id, salesman_id) VALUES (70001,
+ 150.50, date'2026-05-01', 3005, 5002);
+
+1 row created.
+
+SQL> INSERT INTO def14_Orders (Ord_no, purch_amt, ord_date, customer_id, salesman_id) VALUES (70009,
+ 270.65, date'2026-05-02', 3001, 5001);
+
+1 row created.
+
+SQL> INSERT INTO def14_Orders (Ord_no, purch_amt, ord_date, customer_id, salesman_id) VALUES (70002,
+ 65.26, date'2026-05-03', 3002, 5001);
+
+1 row created.
+
+SQL> INSERT INTO def14_Orders (Ord_no, purch_amt, ord_date, customer_id, salesman_id) VALUES (70004,
+ 110.50, date'2026-05-04', 3009, 5003);
+
+1 row created.
+
+SQL> INSERT INTO def14_Orders (Ord_no, purch_amt, ord_date, customer_id, salesman_id) VALUES (70007,
+ 948.50, date'2026-05-05', 3005, 5002);
+
+1 row created.
+
+SQL> INSERT INTO def14_Orders (Ord_no, purch_amt, ord_date, customer_id, salesman_id) VALUES (70005,
+ 2400.60, date'2026-05-06', 3007, 5001);
+
+1 row created.
+
+SQL> INSERT INTO def14_Orders (Ord_no, purch_amt, ord_date, customer_id, salesman_id) VALUES (70008,
+ 5760.00, date'2026-05-07', 3002, 5001);
+
+1 row created.
+
+SQL> SELECT ord_date, salesman_id, Ord_no, purch_amt 
+  2  FROM def14_Orders;
+
+ORD_DATE  SALESMAN_ID     ORD_NO  PURCH_AMT
+--------- ----------- ---------- ----------
+01-MAY-26        5002      70001      150.5
+02-MAY-26        5001      70009     270.65
+03-MAY-26        5001      70002      65.26
+04-MAY-26        5003      70004      110.5
+05-MAY-26        5002      70007      948.5
+06-MAY-26        5001      70005     2400.6
+07-MAY-26        5001      70008       5760
+
+7 rows selected.
+
+SQL> SELECT DISTINCT salesman_id 
+  2  FROM def14_Orders;
+
+SALESMAN_ID
+-----------
+       5003
+       5001
+       5002
+
+SQL> SELECT Ord_no, ord_date, purch_amt 
+  2  FROM def14_Orders 
+  3  WHERE salesman_id = 5001;
+
+    ORD_NO ORD_DATE   PURCH_AMT
+---------- --------- ----------
+     70009 02-MAY-26     270.65
+     70002 03-MAY-26      65.26
+     70005 06-MAY-26     2400.6
+     70008 07-MAY-26       5760
+
+SQL> SELECT * 
+  2  FROM def14_Orders 
+  3  ORDER BY Ord_no ASC;
+
+    ORD_NO  PURCH_AMT ORD_DATE  CUSTOMER_ID SALESMAN_ID
+---------- ---------- --------- ----------- -----------
+     70001      150.5 01-MAY-26        3005        5002
+     70002      65.26 03-MAY-26        3002        5001
+     70004      110.5 04-MAY-26        3009        5003
+     70005     2400.6 06-MAY-26        3007        5001
+     70007      948.5 05-MAY-26        3005        5002
+     70008       5760 07-MAY-26        3002        5001
+     70009     270.65 02-MAY-26        3001        5001
+
+7 rows selected.

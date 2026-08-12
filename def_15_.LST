@@ -1,0 +1,254 @@
+SQL> CREATE TABLE def15_Salesman (
+  2      Sid INT PRIMARY KEY,
+  3      name VARCHAR(50),
+  4      city VARCHAR(50),
+  5      commission DECIMAL(4,2)
+  6  );
+
+Table created.
+
+SQL> CREATE TABLE def15_Customer (
+  2      C_id INT PRIMARY KEY,
+  3      cname VARCHAR(50),
+  4      city VARCHAR(50),
+  5      grade INT,
+  6      salesman_id INT,
+  7      FOREIGN KEY (salesman_id) REFERENCES def15_Salesman(Sid)
+  8  );
+
+Table created.
+
+SQL> INSERT INTO def15_Salesman (Sid, name, city, commission) VALUES (1001, 'James Hoog', 'New York'
+, 0.15);
+
+1 row created.
+
+SQL> INSERT INTO def15_Salesman (Sid, name, city, commission) VALUES(1002, 'Nail Knite', 'Paris', 0.
+13);
+
+1 row created.
+
+SQL> INSERT INTO def15_Salesman (Sid, name, city, commission) VALUES(1003, 'Lauson Hen', 'San Jose',
+ 0.12);
+
+1 row created.
+
+SQL> INSERT INTO def15_Salesman (Sid, name, city, commission) VALUES(1004, 'Pit Alex', 'London', 0.1
+1);
+
+1 row created.
+
+SQL> INSERT INTO def15_Salesman (Sid, name, city, commission) VALUES(1005, 'Mc Lyon', 'Paris', 0.14)
+;
+
+1 row created.
+
+SQL> 
+SQL> 
+SQL> INSERT INTO def15_Customer (C_id, cname, city, grade, salesman_id) VALUES(3001, 'Brad Guzan', '
+London', 100, 1004);
+
+1 row created.
+
+SQL> INSERT INTO def15_Customer (C_id, cname, city, grade, salesman_id) VALUES(3002, 'Nick Rimando',
+ 'New York', 200, 1001);
+
+1 row created.
+
+SQL> INSERT INTO def15_Customer (C_id, cname, city, grade, salesman_id) VALUES(3003, 'Jozy Altidore'
+, 'Moscow', 200, 1003);
+
+1 row created.
+
+SQL> INSERT INTO def15_Customer (C_id, cname, city, grade, salesman_id) VALUES(3004, 'Fabian Johnson
+', 'Paris', 300, 1002);
+
+1 row created.
+
+SQL> INSERT INTO def15_Customer (C_id, cname, city, grade, salesman_id) VALUES(3005, 'Graham Zusi', 
+'California', 100, 1003);
+
+1 row created.
+
+SQL> INSERT INTO def15_Customer (C_id, cname, city, grade, salesman_id) VALUES(3007, 'Brad Davis', '
+New York', 200, 1001);
+
+1 row created.
+
+SQL> INSERT INTO def15_Customer (C_id, cname, city, grade, salesman_id) VALUES(3008, 'Julian Green',
+ 'London', 300, 1004);
+
+1 row created.
+
+SQL> INSERT INTO def15_Customer (C_id, cname, city, grade, salesman_id) VALUES(3009, 'Geoff Cameron'
+, 'Berlin', 100, 1005);
+
+1 row created.
+
+SQL>  SELECT *
+  2  FROM def15_Customer
+  3  WHERE grade = 200;
+
+      C_ID CNAME                                                                
+---------- --------------------------------------------------                   
+CITY                                                    GRADE SALESMAN_ID       
+-------------------------------------------------- ---------- -----------       
+      3002 Nick Rimando                                                         
+New York                                                  200        1001       
+                                                                                
+      3003 Jozy Altidore                                                        
+Moscow                                                    200        1003       
+                                                                                
+      3007 Brad Davis                                                           
+New York                                                  200        1001       
+                                                                                
+
+SQL> SELECT *
+  2  FROM def15_Customer
+  3  WHERE grade > 100;
+
+      C_ID CNAME                                                                
+---------- --------------------------------------------------                   
+CITY                                                    GRADE SALESMAN_ID       
+-------------------------------------------------- ---------- -----------       
+      3002 Nick Rimando                                                         
+New York                                                  200        1001       
+                                                                                
+      3003 Jozy Altidore                                                        
+Moscow                                                    200        1003       
+                                                                                
+      3004 Fabian Johnson                                                       
+Paris                                                     300        1002       
+                                                                                
+
+      C_ID CNAME                                                                
+---------- --------------------------------------------------                   
+CITY                                                    GRADE SALESMAN_ID       
+-------------------------------------------------- ---------- -----------       
+      3007 Brad Davis                                                           
+New York                                                  200        1001       
+                                                                                
+      3008 Julian Green                                                         
+London                                                    300        1004       
+                                                                                
+
+SQL> SELECT *
+  2  FROM def15_Customer
+  3  WHERE city = 'New York' AND grade > 100;
+
+      C_ID CNAME                                                                
+---------- --------------------------------------------------                   
+CITY                                                    GRADE SALESMAN_ID       
+-------------------------------------------------- ---------- -----------       
+      3002 Nick Rimando                                                         
+New York                                                  200        1001       
+                                                                                
+      3007 Brad Davis                                                           
+New York                                                  200        1001       
+                                                                                
+
+SQL> SELECT *
+  2  FROM def15_Customer
+  3  WHERE city = 'New York' OR grade > 100;
+
+      C_ID CNAME                                                                
+---------- --------------------------------------------------                   
+CITY                                                    GRADE SALESMAN_ID       
+-------------------------------------------------- ---------- -----------       
+      3002 Nick Rimando                                                         
+New York                                                  200        1001       
+                                                                                
+      3003 Jozy Altidore                                                        
+Moscow                                                    200        1003       
+                                                                                
+      3004 Fabian Johnson                                                       
+Paris                                                     300        1002       
+                                                                                
+
+      C_ID CNAME                                                                
+---------- --------------------------------------------------                   
+CITY                                                    GRADE SALESMAN_ID       
+-------------------------------------------------- ---------- -----------       
+      3007 Brad Davis                                                           
+New York                                                  200        1001       
+                                                                                
+      3008 Julian Green                                                         
+London                                                    300        1004       
+                                                                                
+
+SQL> SELECT cname, city, grade
+  2  FROM def15_Customer
+  3  ORDER BY grade DESC;
+
+CNAME                                                                           
+--------------------------------------------------                              
+CITY                                                    GRADE                   
+-------------------------------------------------- ----------                   
+Fabian Johnson                                                                  
+Paris                                                     300                   
+                                                                                
+Julian Green                                                                    
+London                                                    300                   
+                                                                                
+Jozy Altidore                                                                   
+Moscow                                                    200                   
+                                                                                
+
+CNAME                                                                           
+--------------------------------------------------                              
+CITY                                                    GRADE                   
+-------------------------------------------------- ----------                   
+Brad Davis                                                                      
+New York                                                  200                   
+                                                                                
+Nick Rimando                                                                    
+New York                                                  200                   
+                                                                                
+Geoff Cameron                                                                   
+Berlin                                                    100                   
+                                                                                
+
+CNAME                                                                           
+--------------------------------------------------                              
+CITY                                                    GRADE                   
+-------------------------------------------------- ----------                   
+Graham Zusi                                                                     
+California                                                100                   
+                                                                                
+Brad Guzan                                                                      
+London                                                    100                   
+                                                                                
+
+8 rows selected.
+
+SQL> SELECT c.cname AS customer_name, s.name AS salesman_name
+  2  FROM def15_Customer c
+  3  JOIN def15_Salesman s ON c.salesman_id = s.Sid
+  4  WHERE c.city = s.city;
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                                                   
+--------------------------------------------------                              
+Brad Guzan                                                                      
+Pit Alex                                                                        
+                                                                                
+Nick Rimando                                                                    
+James Hoog                                                                      
+                                                                                
+Fabian Johnson                                                                  
+Nail Knite                                                                      
+                                                                                
+
+CUSTOMER_NAME                                                                   
+--------------------------------------------------                              
+SALESMAN_NAME                                                                   
+--------------------------------------------------                              
+Brad Davis                                                                      
+James Hoog                                                                      
+                                                                                
+Julian Green                                                                    
+Pit Alex                                                                        
+                                                                                
+
+SQL> 
